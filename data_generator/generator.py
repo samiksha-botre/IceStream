@@ -1,6 +1,13 @@
 import random
 import time
+import json
 from datetime import datetime
+from kafka import KafkaProducer
+
+producer = KafkaProducer(
+    bootstrap_servers="localhost:9092",
+    value_serializer=lambda value: json.dumps(value).encode("utf-8")
+)
 
 
 products = ["Laptop", "Mobile", "Headphones", "Keyboard", "Mouse"]
@@ -34,6 +41,8 @@ def generate_transaction():
 
 while True:
     transaction = generate_transaction()
-    print(transaction)
+
+    producer.send("icestream-transactions", value=transaction)
+    print("Sent:", transaction)
 
     time.sleep(0.01)
