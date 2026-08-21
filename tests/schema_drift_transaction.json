@@ -1,0 +1,10 @@
+{
+  "transaction_id": "TXN1003",
+  "user_id": "USER503",
+  "product": "Headphones",
+  "amount": 2500.0,
+  "tax_amount": 450.0,
+  "payment_method": "UPI",
+  "status": "completed",
+  "discount": 200.0
+}

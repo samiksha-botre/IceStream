@@ -1,0 +1,9 @@
+{
+  "transaction_id": "TXN1001",
+  "user_id": "USER501",
+  "product": "Laptop",
+  "amount": 55000.0,
+  "tax_amount": 9900.0,
+  "payment_method": "UPI",
+  "status": "completed"
+}
