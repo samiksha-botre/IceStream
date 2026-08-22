@@ -45,4 +45,10 @@ def load_and_validate(file_path):
 
 
 if __name__ == "__main__":
-    load_and_validate("tests/sample_transaction.json")
+    import sys
+
+    if len(sys.argv) != 2:
+        print("Usage: python transaction_quality_job.py <path_to_transaction_json>")
+        sys.exit(1)
+
+    load_and_validate(sys.argv[1])
