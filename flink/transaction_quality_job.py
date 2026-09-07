@@ -1,6 +1,11 @@
+import sys
 import json
 
-from pyflink.common import Types
+sys.path.insert(0, r"C:\IceStream")
+
+from data_quality.validator import validate_transaction
+
+from pyflink.common import Types, WatermarkStrategy, Configuration
 from pyflink.datastream import StreamExecutionEnvironment
 from pyflink.datastream.connectors.kafka import (
     KafkaSource,
@@ -17,8 +22,6 @@ def validate_message(message):
     try:
         transaction = json.loads(message)
 
-        from data_quality.validator import validate_transaction
-
         status, validation_message = validate_transaction(transaction)
 
         return f"Status: {status} | Message: {validation_message}"
@@ -28,7 +31,29 @@ def validate_message(message):
 
 
 def main():
-    env = StreamExecutionEnvironment.get_execution_environment()
+    config = Configuration()
+
+    config.set_string(
+        "python.executable",
+        "C:/flink-2.2-venv/Scripts/python.exe"
+    )
+
+    config.set_string(
+        "python.client.executable",
+        "C:/flink-2.2-venv/Scripts/python.exe"
+    )
+
+    config.set_string(
+        "python.path",
+        "C:/IceStream"
+    )
+
+    config.set_string(
+        "python.pythonpath",
+        "C:/flink-2.2-venv/Lib/site-packages"
+    )
+
+    env = StreamExecutionEnvironment.get_execution_environment(config)
 
     source = (
         KafkaSource.builder()
@@ -42,7 +67,7 @@ def main():
 
     stream = env.from_source(
         source,
-        watermark_strategy=None,
+        watermark_strategy=WatermarkStrategy.no_watermarks(),
         source_name="IceStream Kafka Source",
     )
 

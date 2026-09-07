@@ -6,6 +6,8 @@ EXPECTED_FIELDS = {
     "tax_amount",
     "payment_method",
     "status",
+    "timestamp",     
+
 }
 
 
