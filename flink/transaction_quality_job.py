@@ -4,6 +4,7 @@ import json
 sys.path.insert(0, r"C:\IceStream")
 
 from data_quality.validator import validate_transaction
+from lakehouse.writer import write_valid_transaction
 
 from pyflink.common import Types, WatermarkStrategy, Configuration
 from pyflink.datastream import StreamExecutionEnvironment
@@ -23,6 +24,7 @@ def validate_message(message):
         transaction = json.loads(message)
 
         status, validation_message = validate_transaction(transaction)
+        write_valid_transaction(transaction, status)
 
         return f"Status: {status} | Message: {validation_message}"
 
