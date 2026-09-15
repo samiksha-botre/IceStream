@@ -6,6 +6,10 @@ sys.path.insert(0, r"C:\IceStream")
 
 from lakehouse.config import get_lakehouse_path
 
+def write_valid_transaction(transaction, status):
+    if status == "VALID":
+        write_transaction(transaction)
+
 def write_transaction(transaction):
     lakehouse_path = get_lakehouse_path()
 
