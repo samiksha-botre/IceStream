@@ -105,3 +105,4 @@ async function loadTransactions() {
 }
 
 loadTransactions();
+setInterval(loadTransactions, 5000);
