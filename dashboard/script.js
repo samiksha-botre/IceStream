@@ -1,3 +1,4 @@
+let allTransactions = [];
 
 function getQualityStatus(transaction) {
     const expectedFields = [
@@ -52,7 +53,15 @@ function updateDashboard(transactions) {
     const table = document.getElementById("transaction-table");
     table.innerHTML = "";
 
-    transactions.slice(-10).reverse().forEach(transaction => {
+   const selectedStatus = document.getElementById("status-filter").value;
+
+const filteredTransactions = selectedStatus === "ALL"
+    ? transactions
+    : transactions.filter(
+        t => getQualityStatus(t) === selectedStatus
+    );
+
+filteredTransactions.slice(-10).reverse().forEach(transaction => {
         const row = document.createElement("tr");
         const qualityStatus = getQualityStatus(transaction);
 
@@ -97,8 +106,8 @@ async function loadTransactions() {
             throw new Error("Could not load transactions");
         }
 
-        const transactions = await response.json();
-        updateDashboard(transactions);
+        allTransactions = await response.json();
+        updateDashboard(allTransactions);
     } catch (error) {
         console.error("Dashboard error:", error);
     }
@@ -106,3 +115,7 @@ async function loadTransactions() {
 
 loadTransactions();
 setInterval(loadTransactions, 5000);
+
+document.getElementById("status-filter").addEventListener("change", () => {
+    updateDashboard(allTransactions);
+});

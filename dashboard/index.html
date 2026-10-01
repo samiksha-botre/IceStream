@@ -77,6 +77,16 @@
                 <span class="table-tag">TRANSACTION LOG</span>
             </div>
 
+            <div class="filter-row">
+    <label for="status-filter">Filter by status:</label>
+    <select id="status-filter">
+        <option value="ALL">All Transactions</option>
+        <option value="VALID">Valid</option>
+        <option value="BAD_DATA">Bad Data</option>
+        <option value="SCHEMA_DRIFT">Schema Drift</option>
+    </select>
+</div>
+
             <div class="table-wrapper">
                 <table>
                     <thead>
