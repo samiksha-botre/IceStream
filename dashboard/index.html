@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IceStream | Real-Time Observability</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="logo">❄ IceStream</div>
+            <p class="nav-heading">MAIN MENU</p>
+            <nav>
+                <a href="#" class="nav-link active">▦ Dashboard</a>
+                <a href="#transactions" class="nav-link">▤ Transactions</a>
+                <a href="#quality" class="nav-link">◈ Data Quality</a>
+            </nav>
+            <div class="sidebar-footer">
+                <span class="status-dot"></span>
+                Local Monitoring
+            </div>
+        </aside>
+
+```
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">REAL-TIME DATA PLATFORM</p>
+                <h1>Overview Dashboard</h1>
+                <p class="subtitle">Monitor transaction processing and data quality.</p>
+            </div>
+            <div class="system-status">
+                <span class="status-dot"></span>
+                Demo Mode
+            </div>
+        </header>
+
+        <section class="metrics" id="quality">
+            <article class="metric-card">
+                <div class="metric-label">Total Transactions</div>
+                <div class="metric-icon blue">▤</div>
+                <div class="metric-value" id="total-count">0</div>
+                <p class="metric-note">Transactions loaded</p>
+            </article>
+
+            <article class="metric-card">
+                <div class="metric-label">Valid Transactions</div>
+                <div class="metric-icon green">✓</div>
+                <div class="metric-value" id="valid-count">0</div>
+                <p class="metric-note">Passed validation</p>
+            </article>
+
+            <article class="metric-card">
+                <div class="metric-label">Bad Data</div>
+                <div class="metric-icon orange">!</div>
+                <div class="metric-value" id="bad-count">0</div>
+                <p class="metric-note">Failed validation</p>
+            </article>
+
+            <article class="metric-card">
+                <div class="metric-label">Schema Drift</div>
+                <div class="metric-icon purple">⌁</div>
+                <div class="metric-value" id="drift-count">0</div>
+                <p class="metric-note">Unexpected fields</p>
+            </article>
+        </section>
+
+        <section class="panel" id="transactions">
+            <div class="panel-header">
+                <div>
+                    <h2>Recent Transactions</h2>
+                    <p>Latest transaction records and their quality status</p>
+                </div>
+                <span class="table-tag">TRANSACTION LOG</span>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>Product</th>
+                            <th>Amount</th>
+                            <th>Payment</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transaction-table">
+                        <tr>
+                            <td colspan="5" class="empty-state">
+                                Loading transaction data...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer>
+            IceStream · Real-Time Lakehouse Observability
+        </footer>
+    </main>
+</div>
+```
+
+</body>
+</html>
