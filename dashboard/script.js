@@ -133,8 +133,34 @@ async function loadTransactions() {
     }
 }
 
-loadTransactions();
-setInterval(loadTransactions, 5000);
+// Demo mode: add one simulated transaction every 5 seconds
+function generateDemoTransaction() {
+    const products = ["Laptop", "Mobile", "Headphones", "Keyboard", "Mouse"];
+    const payments = ["UPI", "Credit Card", "Debit Card", "Cash"];
+    const statuses = ["SUCCESS", "FAILED", "PENDING"];
+
+    return {
+        transaction_id: "DEMO-" + Date.now(),
+        user_id: "DEMO-USER",
+        product: products[Math.floor(Math.random() * products.length)],
+        amount: Math.floor(Math.random() * 50000) + 1000,
+        tax_amount: Math.floor(Math.random() * 5000) + 100,
+        payment_method: payments[Math.floor(Math.random() * payments.length)],
+        status: statuses[Math.floor(Math.random() * statuses.length)],
+        timestamp: new Date().toISOString()
+    };
+}
+
+async function startDashboard() {
+    await loadTransactions();
+
+    setInterval(() => {
+        allTransactions.push(generateDemoTransaction());
+        updateDashboard(allTransactions);
+    }, 5000);
+}
+
+startDashboard();
 
 document.getElementById("status-filter").addEventListener("change", () => {
     updateDashboard(allTransactions);
