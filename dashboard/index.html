@@ -68,7 +68,50 @@
             </article>
         </section>
 
+        <section class="panel" id="quality-overview">
+    <div class="panel-header">
+        <div>
+            <h2>Data Quality Overview</h2>
+            <p>Distribution of transaction quality</p>
+        </div>
+        <span class="table-tag">QUALITY METRICS</span>
+    </div>
+
+    <div class="quality-chart">
+        <div class="quality-item">
+            <div class="quality-label">
+                <span>Valid</span>
+                <strong id="valid-percent">0%</strong>
+            </div>
+            <div class="quality-track">
+                <div id="valid-bar" class="quality-fill valid-fill"></div>
+            </div>
+        </div>
+
+        <div class="quality-item">
+            <div class="quality-label">
+                <span>Bad Data</span>
+                <strong id="bad-percent">0%</strong>
+            </div>
+            <div class="quality-track">
+                <div id="bad-bar" class="quality-fill bad-fill"></div>
+            </div>
+        </div>
+
+        <div class="quality-item">
+            <div class="quality-label">
+                <span>Schema Drift</span>
+                <strong id="drift-percent">0%</strong>
+            </div>
+            <div class="quality-track">
+                <div id="drift-bar" class="quality-fill drift-fill"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
         <section class="panel" id="transactions">
+       
             <div class="panel-header">
                 <div>
                     <h2>Recent Transactions</h2>

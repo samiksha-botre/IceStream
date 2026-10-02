@@ -50,6 +50,26 @@ function updateDashboard(transactions) {
     document.getElementById("bad-count").textContent = bad;
     document.getElementById("drift-count").textContent = drift;
 
+    const totalForChart = total || 1;
+
+const validPercent = (valid / totalForChart) * 100;
+const badPercent = (bad / totalForChart) * 100;
+const driftPercent = (drift / totalForChart) * 100;
+
+document.getElementById("valid-percent").textContent =
+    validPercent.toFixed(1) + "%";
+document.getElementById("bad-percent").textContent =
+    badPercent.toFixed(1) + "%";
+document.getElementById("drift-percent").textContent =
+    driftPercent.toFixed(1) + "%";
+
+document.getElementById("valid-bar").style.width =
+    validPercent + "%";
+document.getElementById("bad-bar").style.width =
+    badPercent + "%";
+document.getElementById("drift-bar").style.width =
+    driftPercent + "%";
+
     const table = document.getElementById("transaction-table");
     table.innerHTML = "";
 
