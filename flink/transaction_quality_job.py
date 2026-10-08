@@ -1,7 +1,4 @@
-import sys
 import json
-
-sys.path.insert(0, r"C:\IceStream")
 
 from data_quality.validator import validate_transaction
 from lakehouse.writer import write_valid_transaction
@@ -36,26 +33,13 @@ def main():
     config = Configuration()
 
     config.set_string(
-        "python.executable",
-        "C:/flink-2.2-venv/Scripts/python.exe"
-    )
-
-    config.set_string(
-        "python.client.executable",
-        "C:/flink-2.2-venv/Scripts/python.exe"
-    )
-
-    config.set_string(
-        "python.path",
-        "C:/IceStream"
-    )
-
-    config.set_string(
-        "python.pythonpath",
-        "C:/flink-2.2-venv/Lib/site-packages"
+        "pipeline.jars",
+        "file:///C:/flink-2.2.1/lib/flink-connector-kafka-5.0.0-2.2.jar;file:///C:/flink-2.2.1/lib/kafka-clients-4.3.1.jar"
     )
 
     env = StreamExecutionEnvironment.get_execution_environment(config)
+
+    env.set_python_executable(r"C:\flink-venv\Scripts\python.exe")
 
     source = (
         KafkaSource.builder()
