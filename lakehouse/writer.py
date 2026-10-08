@@ -1,8 +1,6 @@
-import sys
 import json
 import os
 
-sys.path.insert(0, r"C:\IceStream")
 
 from lakehouse.config import get_lakehouse_path
 
